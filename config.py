@@ -4,6 +4,8 @@
 请根据您的实际需求修改以下配置。
 """
 
+import os
+
 # --- 1. ACME 服务配置 ---
 # ACME 服务器地址，用于证书申请。
 # Let's Encrypt 生产环境: "https://acme-v02.api.letsencrypt.org/directory"
@@ -17,7 +19,7 @@ ACME_DIRECTORY_URL = "https://acme-staging-v02.api.letsencrypt.org/directory" # 
 
 # ACME 账户联系邮箱。Let's Encrypt 会通过此邮箱发送重要通知（如证书即将过期）。
 # 解释：您注册 ACME 账户时使用的邮箱地址。Let's Encrypt 可能会通过此邮箱发送关于证书过期、重要服务通知等邮件。
-ACME_CONTACT_EMAIL = "your_email@example.com"
+ACME_CONTACT_EMAIL = "xiaoshae@gmail.com"
 
 
 # --- 2. 证书配置 ---
@@ -29,8 +31,8 @@ ACME_CONTACT_EMAIL = "your_email@example.com"
 # - 如果是泛域名，例如 `["*.example.com", "example.com"]`。泛域名证书可以保护 `example.com` 的所有子域名（如 `www.example.com`, `blog.example.com` 等）。请注意，申请泛域名证书通常需要 DNS 验证。
 # 列表中的第一个域名通常被视为证书的"主域名"或"通用名称 (CN)"。
 DOMAINS = [
-    "example.com",
-    "www.example.com",
+    "xses.uno",
+    "*.xses.uno",
 ]
 
 
@@ -41,8 +43,8 @@ DOMAINS = [
 # `ALIYUN_ACCESS_KEY_ID`：您的阿里云 AccessKey ID，用于身份验证。
 # `ALIYUN_ACCESS_KEY_SECRET`：您的阿里云 AccessKey Secret，与 AccessKey ID 配对使用。
 # `ALIYUN_DNS_ENDPOINT`：阿里云 DNS 服务的 API 端点。根据您选择的地域而异，例如 `alidns.cn-beijing.aliyuncs.com`。
-ALIYUN_ACCESS_KEY_ID = "YOUR_ALIYUN_ACCESS_KEY_ID"
-ALIYUN_ACCESS_KEY_SECRET = "YOUR_ALIYUN_ACCESS_KEY_SECRET"
+ALIYUN_ACCESS_KEY_ID = os.environ.get('ALIYUN_ACCESS_KEY_ID')
+ALIYUN_ACCESS_KEY_SECRET = os.environ.get('ALIYUN_ACCESS_KEY_SECRET')
 ALIYUN_DNS_ENDPOINT = "alidns.cn-beijing.aliyuncs.com"  # 阿里云 API 端点，例如: 'alidns.cn-beijing.aliyuncs.com'
 
 
@@ -52,20 +54,21 @@ ALIYUN_DNS_ENDPOINT = "alidns.cn-beijing.aliyuncs.com"  # 阿里云 API 端点�
 # 解释：一个布尔值，决定是否在证书申请流程结束后发送邮件通知。
 # 如果设置为 `True`，系统会尝试发送邮件，您必须正确配置下面的 SMTP 参数。
 # 如果设置为 `False`，则不会发送邮件。
-SEND_EMAIL = False
+SEND_EMAIL = True
 
 # 发件人邮箱 (需要开启 SMTP 服务)
 # 解释：用于发送通知邮件的邮箱地址。此邮箱需要开启 SMTP 服务。
-SMTP_SENDER_EMAIL = "sender@example.com"
+SMTP_SENDER_EMAIL = os.environ.get('SMTP_SENDER_EMAIL')
 # 发件人邮箱的 SMTP 授权码 (注意不是登录密码)
 # 解释：发件人邮箱的 SMTP 授权码，不是邮箱的登录密码。许多邮箱服务提供商为了安全会要求使用授权码进行 SMTP 认证。
-SMTP_SENDER_PASSWORD = "YOUR_SMTP_PASSWORD"
+SMTP_SENDER_PASSWORD = os.environ.get('SMTP_SENDER_PASSWORD')
 # 收件人邮箱列表
 # 解释：一个 Python 列表，包含接收通知邮件的所有邮箱地址。
-SMTP_RECIPIENTS = ["recipient@example.com"]
+SMTP_RECIPIENTS = [os.environ.get('SMTP_RECIPIENTS')]
+print("TEST: ",SMTP_RECIPIENTS)
 # SMTP 服务器地址
 # 解释：发件人邮箱所属的 SMTP 服务器地址。例如，网易邮箱是 `smtp.163.com`，Gmail 是 `smtp.gmail.com`。
-SMTP_HOST = "smtp.example.com"
+SMTP_HOST = "smtp.163.com"
 # SMTP 服务器端口 (通常为 465 (SSL) 或 587 (TLS))
 SMTP_PORT = 587
 
@@ -99,9 +102,10 @@ SMTP_PORT = 587
 
 # C. 密钥参数
 # 证书私钥的 RSA 密钥位数 (默认: 3072)
-# 解释：生成证书私钥时使用的 RSA 密钥长度。位数越高，安全性越强，但计算开销也越大。3072 位通常是一个安全且性能合理的选择。
+# 解释：生成证书私钥时使用的 RSA 密钥长度。位数越高，安全性越强，但计算开销也越大。3072 位通常是ä个安全且性能合理的选择。
 # CERT_KEY_SIZE = 3072
 # 加密私钥的密码 (如果设置为 None 或留空，则不加密)
 # 解释：一个可选密码，用于加密生成的证书私钥。如果设置为 `None` 或空字符串，则私钥将不加密。
 # 如果您需要额外的安全层，可以设置密码。请注意，加密后的私钥在每次使用时都需要提供密码。
 # COMMON_PASSWORD = None
+
