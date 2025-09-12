@@ -17,9 +17,9 @@ jobs:
         run: pip install -r requirements.txt
       - name: 正式申请证书
         env:
-          - ALIYUN_ACCESS_KEY_ID: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
-          - ALIYUN_ACCESS_KEY_SECRET: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
-          - SMTP_RECIPIENTS: ${{ secrets.SMTP_RECIPIENTS }}
-          - SMTP_SENDER_EMAIL: ${{ secrets.SMTP_SENDER_EMAIL }}
-          - SMTP_SENDER_PASSWORD: ${{ secrets.SMTP_SENDER_PASSWORD }}
+          ALIYUN_ACCESS_KEY_ID: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
+          ALIYUN_ACCESS_KEY_SECRET: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
+          SMTP_RECIPIENTS: ${{ secrets.SMTP_RECIPIENTS }}
+          SMTP_SENDER_EMAIL: ${{ secrets.SMTP_SENDER_EMAIL }}
+          SMTP_SENDER_PASSWORD: ${{ secrets.SMTP_SENDER_PASSWORD }}
         run: python main.py
