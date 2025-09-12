@@ -1,0 +1,5 @@
+alibabacloud_alidns20150109==3.5.8
+loguru==0.7.3
+yagmail==0.15.293
+cryptography==45.0.3
+acme==4.0.0
