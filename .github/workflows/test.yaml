@@ -7,7 +7,5 @@ jobs:
     name: 安装 python 依赖
     runs-on: ubuntu-latest
     steps:
-      name: install
-      run:
-        - pwd
-        - ls
+      - run: pwd
+      - run: ls
