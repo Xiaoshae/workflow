@@ -24,4 +24,6 @@ jobs:
           SMTP_RECIPIENTS: ${{ secrets.SMTP_RECIPIENTS }}
           SMTP_SENDER_EMAIL: ${{ secrets.SMTP_SENDER_EMAIL }}
           SMTP_SENDER_PASSWORD: ${{ secrets.SMTP_SENDER_PASSWORD }}
-        run: python main.py
+        run: | 
+          source ./venv/bin/activate
+          python main.py
