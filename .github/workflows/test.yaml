@@ -12,6 +12,7 @@ jobs:
       - name: 获取仓库内容
         uses: actions/checkout@v4
       - name: 创建 Python 虚拟环境并安装依赖
+        shell: bash
         run: |
           python3 -m venv venv
           source ./venv/bin/activate
