@@ -6,15 +6,16 @@ jobs:
   job1:
     name: 自动化申请证书
     runs-on: ubuntu-latest
+    container:
+      image: python:3.12
     steps:
       - name: 获取仓库内容
         uses: actions/checkout@v4
-      - name: 创建 Python 虚拟环境
-        run: python3 -m venv venv
-      - name: 加载虚拟环境
-        run: source ./venv/bin/activate
-      - name: 安装依赖
-        run: pip install -r requirements.txt
+      - name: 创建 Python 虚拟环境并安装依赖
+        run: |
+          python3 -m venv venv
+          source ./venv/bin/activate
+          pip install -r requirements.txt
       - name: 正式申请证书
         env:
           ALIYUN_ACCESS_KEY_ID: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
